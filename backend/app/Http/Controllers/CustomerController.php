@@ -15,7 +15,24 @@ class CustomerController extends Controller
     public function index($id)
     {
         //
-        $customers = Customer::paginate($id);
+        $searchId = $searchName = $searchEmail = "";
+        if (isset($_GET['id'])) {
+            $searchId = $_GET['id'];
+        }
+
+        if (isset($_GET['name'])) {
+            $searchName = $_GET['name'];
+        }
+
+        if (isset($_GET['email'])) {
+            $searchEmail = $_GET['email'];
+        }
+
+        $customers = Customer::
+            where('id', 'LIKE', '%' . $searchId . '%')
+            ->where('name', 'LIKE', '%' . $searchName . '%')
+            ->where('email', 'LIKE', '%' . $searchEmail . '%')
+            ->paginate($id);
         return $customers;
     }
 

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -20,9 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
-Route::group(['prefix' => '','middleware' => ['assign.guard:users','jwt.auth']],function ()
-{
-Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+Route::group(['prefix' => '', 'middleware' => ['assign.guard:users', 'jwt.auth']], function () {
+    Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 });
-
-Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'index']);
+Route::group(['prefix' => '', 'middleware' => ['assign.guard:users', 'jwt.auth']], function () {
+    Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'index']);
+});
