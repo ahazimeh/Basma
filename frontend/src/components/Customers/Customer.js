@@ -10,7 +10,7 @@ class Customer extends Component {
         this.state = {
             data: "",
             customers: [],
-            rows: 1,
+            rows: 20,
             search1: "",
             search2: "",
             search3: "",
@@ -278,13 +278,19 @@ class Customer extends Component {
         //         </div>
         //     </div>
         // );
-        let count
+        let count;
+        let has_prev = "";
+        let has_next = "";
         if (this.state.data != undefined) {
             count = this.state.data.total;
             var last_page = this.state.data.prev_page_url;
             var next_page = this.state.data.next_page_url;
             var nbPages = this.state.data.last_page;
             var sizePage = 30 * nbPages + 10;
+            if (last_page)
+                has_prev = "cursor"
+            if (next_page)
+                has_next = "cursor";
             var pageList = [];
             var pageList1 = [];
             for (let i = 0; i < nbPages; i++) {
@@ -336,7 +342,7 @@ class Customer extends Component {
                                 this.last();
                             }}
                             type="button"
-                            className="previous"
+                            className={"previous " + has_prev}
                             value="Previous"
                             data={last_page}
                         />
@@ -379,7 +385,7 @@ class Customer extends Component {
                                 this.next();
                             }}
                             type="button"
-                            className="next"
+                            className={"next " + has_next}
                             value="Next"
                             data={next_page}
                         />
@@ -398,7 +404,7 @@ class Customer extends Component {
                             <input
                                 id="search1"
                                 aria-invalid="false"
-                                placeholder="Search 42 records..."
+                                placeholder={"Search " + count + " records..."}
                                 type="text"
                                 className="MuiInputBase-input MuiInput-input jss168"
                             />
@@ -407,7 +413,7 @@ class Customer extends Component {
                             <input
                                 id="search2"
                                 aria-invalid="false"
-                                placeholder="Search 42 records..."
+                                placeholder={"Search " + count + " records..."}
                                 type="text"
                                 className="MuiInputBase-input MuiInput-input jss168"
                             />
@@ -416,7 +422,7 @@ class Customer extends Component {
                             <input
                                 id="search3"
                                 aria-invalid="false"
-                                placeholder="Search 42 records..."
+                                placeholder={"Search " + count + " records..."}
                                 type="text"
                                 className="MuiInputBase-input MuiInput-input jss168"
                             />
