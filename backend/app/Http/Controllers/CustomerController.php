@@ -36,6 +36,25 @@ class CustomerController extends Controller
         return $customers;
     }
 
+    public function chart()
+    {
+        $year = Customer::where('created_at', '>', \DB::raw('DATE_SUB(NOW(),INTERVAL 1 YEAR)'))->get();
+        $yearCount = $year->count();
+
+        $threeMonths = Customer::where('created_at', '>', \DB::raw('DATE_SUB(NOW(),INTERVAL 3 MONTH)'))->get();
+        $threeMonthsCount = $threeMonths->count();
+
+        $month = Customer::where('created_at', '>', \DB::raw('DATE_SUB(NOW(),INTERVAL 1 MONTH)'))->get();
+        $monthCount = $month->count();
+
+        $week = Customer::where('created_at', '>', \DB::raw('DATE_SUB(NOW(),INTERVAL 1 WEEK)'))->get();
+        $weekCount = $week->count();
+
+        $day = Customer::where('created_at', '>', \DB::raw('DATE_SUB(NOW(),INTERVAL 1 DAY)'))->get();
+        $dayCount = $day->count();
+        return [$yearCount / 365, $threeMonthsCount / 90, $monthCount / 30, $weekCount / 7, $dayCount];
+    }
+
     /**
      * Show the form for creating a new resource.
      *

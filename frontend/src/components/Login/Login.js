@@ -60,7 +60,6 @@ class Login extends Component {
 
         const res = await response.json();
         // const result = await response.status;
-        console.log("res", res);
         if (res.access_token) {
             window.localStorage.setItem("token", res.access_token);
             this.setState({ redirect: true });

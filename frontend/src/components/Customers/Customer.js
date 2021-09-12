@@ -109,7 +109,6 @@ class Customer extends Component {
         )
             .then((res) => res.text())
             .then((res) => {
-                console.log("azc", JSON.parse(res).data)
                 this.setState({ data: JSON.parse(res) })
                 this.setState({ customers: JSON.parse(res).data })
             }
@@ -209,7 +208,6 @@ class Customer extends Component {
         )
             .then((res) => res.text())
             .then((res) => {
-                console.log("l", JSON.parse(res));
                 this.setState({ customers: JSON.parse(res).data })
                 this.setState({ data: JSON.parse(res) })
             }

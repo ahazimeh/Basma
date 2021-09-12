@@ -5,6 +5,7 @@ import Contact from "./components/Contact";
 import Customer from "./components/Customers/Customer";
 import Login from './components/Login/Login';
 import CustomerRegister from './components/CustomerRegister/CustomerRegister';
+import Chart from "./components/Chart/Chart";
 function App() {
   return (
     <Router>
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route path="/register">
           <CustomerRegister />
+        </Route>
+        <Route path="/chart">
+          <Chart />
         </Route>
       </Switch>
     </Router>

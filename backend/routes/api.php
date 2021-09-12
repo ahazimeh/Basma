@@ -25,4 +25,6 @@ Route::group(['prefix' => '', 'middleware' => ['assign.guard:users', 'jwt.auth']
 });
 Route::group(['prefix' => '', 'middleware' => ['assign.guard:users', 'jwt.auth']], function () {
     Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'index']);
+    Route::get('/chart', [\App\Http\Controllers\CustomerController::class, 'chart']);
+
 });
